@@ -157,7 +157,7 @@ command Octave !octave --no-gui %
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
 
 autocmd FileType c\|cpp set foldmethod=syntax
-autocmd FileType c\|cpp set foldenable
+autocmd FileType c\|cpp set nofoldenable
 
 "change ultisnips binds
 " let g:UltiSnipsExpandTrigger="<tab>"
