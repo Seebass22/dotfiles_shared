@@ -136,6 +136,9 @@ endif
 "backspace switches to alternative buffer
 nnoremap <bs> <c-^>
 
+"unmap ZZ
+nnoremap ZZ <Nop>
+
 "bind to remove trailing spaces after lines (do not use on vimrc)
 "nnoremap <F5> :%s/\s\+$//e
 
@@ -152,6 +155,9 @@ command Octave !octave --no-gui %
 
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
+
+autocmd FileType c\|cpp set foldmethod=syntax
+autocmd FileType c\|cpp set foldenable
 
 "change ultisnips binds
 " let g:UltiSnipsExpandTrigger="<tab>"
