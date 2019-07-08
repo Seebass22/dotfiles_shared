@@ -33,6 +33,9 @@ Plugin 'tpope/vim-rhubarb'
 "comment stuff out easily
 Plugin 'tpope/vim-commentary'
 
+" surround motion
+Plugin 'tpope/vim-surround'
+
 "i3 config syntax highlighting
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
@@ -155,6 +158,7 @@ command Octave !octave --no-gui %
 
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
+autocmd FileType vhdl setlocal commentstring=--\ %s
 
 autocmd FileType c\|cpp set foldmethod=syntax
 autocmd FileType c\|cpp set nofoldenable
