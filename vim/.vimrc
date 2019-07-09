@@ -36,6 +36,9 @@ Plugin 'tpope/vim-commentary'
 " surround motion
 Plugin 'tpope/vim-surround'
 
+" repeat plugin motions
+Plugin 'tpope/vim-repeat'
+
 "i3 config syntax highlighting
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
