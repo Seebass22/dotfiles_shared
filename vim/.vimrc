@@ -42,8 +42,8 @@ Plugin 'tpope/vim-repeat'
 "i3 config syntax highlighting
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
-" two letter find movement
-Plugin 'justinmk/vim-sneak'
+" " two letter find movement
+" Plugin 'justinmk/vim-sneak'
 
 "snippet functionality
 " Plugin 'SirVer/ultisnips'
@@ -51,7 +51,7 @@ Plugin 'justinmk/vim-sneak'
 "default snippets
 "Plugin 'honza/vim-snippets'
 
-" C# autocompletion
+"C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
 
 " The following are examples of different formats supported.
@@ -133,10 +133,10 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_right_sep='<'
 
 "invisible characters
-set listchars=tab:▸\ ,eol:¬
 
 if has('nvim')
 	set inccommand=nosplit
+	set listchars=tab:▸\ ,eol:¬
 endif
 
 "backspace switches to alternative buffer
@@ -148,8 +148,9 @@ nnoremap ZZ <Nop>
 "bind to remove trailing spaces after lines (do not use on vimrc)
 "nnoremap <F5> :%s/\s\+$//e
 
-"inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
 nnoremap <Space><space> /<++><Enter>"_c4l
+
+"clear search with ctrl l
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
 "for loop (REPLACED BY ULTISNIPS)
@@ -178,5 +179,10 @@ autocmd FileType c\|cpp set nofoldenable
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
-" let omnisharp use system installed mono
+
+"""OMNISHARP
+"let omnisharp use system installed mono
 " let g:OmniSharp_server_use_mono = 1
+
+"Use the stdio version of OmniSharp-roslyn (needed for neovim)
+" let g:OmniSharp_server_stdio = 1
