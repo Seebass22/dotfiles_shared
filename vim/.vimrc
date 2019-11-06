@@ -46,7 +46,7 @@ Plugin 'PotatoesMaster/i3-vim-syntax'
 " Plugin 'justinmk/vim-sneak'
 
 "snippet functionality
-" Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 "default snippets
 "Plugin 'honza/vim-snippets'
@@ -167,14 +167,14 @@ autocmd FileType vhdl setlocal commentstring=--\ %s
 autocmd FileType c\|cpp set foldmethod=syntax
 autocmd FileType c\|cpp set nofoldenable
 
-"change ultisnips binds
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" change ultisnips binds
+ let g:UltiSnipsExpandTrigger="<tab>"
+ let g:UltiSnipsJumpForwardTrigger="<tab>"
+ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-"makes custom snippets work
-" let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
-" let g:UltiSnipsSnippetDirectories=["ultisnips"]
+" makes custom snippets work
+ let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
+ let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
