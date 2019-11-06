@@ -1,0 +1,35 @@
+snippet nor
+\neg ($1 \lor $2)
+endsnippet
+
+snippet nand
+\neg ($1 \land $2)
+endsnippet
+
+snippet dnor
+\neg ($1 \lor $1)
+endsnippet
+
+snippet dnand
+\neg ($1 \land $1)
+endsnippet
+
+#usepackage
+snippet up
+\usepackage[${1:options}]{${2:package}} ${0}
+endsnippet
+
+# \begin{}...\end{}
+snippet begin
+\begin{${1:env}}
+${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet sec
+\section{${1:heading}}${0}
+endsnippet
+
+snippet sub
+\subsection{${1:heading}}${0}
+endsnippet
