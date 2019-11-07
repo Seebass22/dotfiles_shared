@@ -48,6 +48,12 @@ Plugin 'PotatoesMaster/i3-vim-syntax'
 "snippet functionality
 Plugin 'SirVer/ultisnips'
 
+"call tmux/nvim terminal for make
+Plugin 'tpope/vim-dispatch'
+
+"nvim terminal support for dispatch
+Plugin 'radenling/vim-dispatch-neovim'
+
 "default snippets
 "Plugin 'honza/vim-snippets'
 
@@ -153,10 +159,6 @@ nnoremap <Space><space> /<++><Enter>"_c4l
 "clear search with ctrl l
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
-"for loop (REPLACED BY ULTISNIPS)
-"count <leader>for
-" inoremap <leader>for <esc>Ifor (int i = 0; i < <esc>A; i++) {<enter>}<esc>O
-
 "run gnu octave on file
 command Octave !octave --no-gui %
 
@@ -168,13 +170,13 @@ autocmd FileType c\|cpp set foldmethod=syntax
 autocmd FileType c\|cpp set nofoldenable
 
 " change ultisnips binds
- let g:UltiSnipsExpandTrigger="<tab>"
- let g:UltiSnipsJumpForwardTrigger="<tab>"
- let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " makes custom snippets work
- let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
- let g:UltiSnipsSnippetDirectories=["ultisnips"]
+let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
+let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
