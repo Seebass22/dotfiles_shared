@@ -54,6 +54,9 @@ Plugin 'tpope/vim-dispatch'
 "nvim terminal support for dispatch
 Plugin 'radenling/vim-dispatch-neovim'
 
+"fzf functions
+Plugin 'junegunn/fzf.vim'
+
 "default snippets
 "Plugin 'honza/vim-snippets'
 
@@ -147,6 +150,12 @@ endif
 
 "backspace switches to alternative buffer
 nnoremap <bs> <c-^>
+
+"F2 runs :make
+nnoremap <F2> :make<CR>
+
+"delete switches to next buffer
+nnoremap <DEL> :bn<CR>
 
 "unmap ZZ
 nnoremap ZZ <Nop>
