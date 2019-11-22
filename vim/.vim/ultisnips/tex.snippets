@@ -39,3 +39,16 @@ snippet dnand
 \neg ($1 \land $1)
 endsnippet
 
+##TIKZ
+snippet plot
+\begin{tikzpicture}
+\begin{axis}[
+	xlabel={\$${1:x axis}\$ [${2:unit}]},
+	ylabel={\$${3:y axis}\$ [${4:unit}]}
+]
+\addplot coordinates{
+$5
+};
+\end{axis}
+\end{tikzpicture}
+endsnippet
