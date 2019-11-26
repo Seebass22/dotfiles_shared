@@ -152,7 +152,7 @@ endif
 nnoremap <bs> <c-^>
 
 "F2 runs :make
-nnoremap <F2> :make<CR>
+nnoremap <F2> :Make<CR>
 
 "delete switches to next buffer
 nnoremap <DEL> :bn<CR>
@@ -170,6 +170,8 @@ nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
 "run gnu octave on file
 command Octave !octave --no-gui %
+command Plot r !~/bashscripts/plot.sh
+command Plot2 r !~/bashscripts/plot.sh -r
 
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->

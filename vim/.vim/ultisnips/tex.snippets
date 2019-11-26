@@ -4,7 +4,7 @@ snippet up
 endsnippet
 
 #\begin{}...\end{}
-snippet begin
+snippet beg
 \begin{${1:env}}
 ${0:${VISUAL}}
 \end{$1}
@@ -20,6 +20,11 @@ endsnippet
 
 snippet subsub
 \subsubsection{${1:heading}}${0}
+endsnippet
+
+##MATH
+snippet frac
+\frac{$1}{$2}
 endsnippet
 
 ##LOGICAL
@@ -44,11 +49,29 @@ snippet plot
 \begin{tikzpicture}
 \begin{axis}[
 	xlabel={\$${1:x axis}\$ [${2:unit}]},
-	ylabel={\$${3:y axis}\$ [${4:unit}]}
+	ylabel={\$${3:y axis}\$ [${4:unit}]},
+	xmajorgrids=true,
+	ymajorgrids=true
 ]
-\addplot coordinates{
+\addplot table{
 $5
 };
 \end{axis}
 \end{tikzpicture}
+endsnippet
+
+snippet legend
+\addlegendentry{$1}
+endsnippet
+
+snippet coords
+\addplot coordinates{
+$1
+};
+endsnippet
+
+snippet table
+\addplot table{
+$1
+}
 endsnippet
