@@ -57,6 +57,9 @@ Plugin 'radenling/vim-dispatch-neovim'
 "fzf functions
 Plugin 'junegunn/fzf.vim'
 
+"latex plugin
+Plugin 'lervag/vimtex'
+
 "default snippets
 "Plugin 'honza/vim-snippets'
 
@@ -179,6 +182,10 @@ autocmd FileType vhdl setlocal commentstring=--\ %s
 
 autocmd FileType c\|cpp set foldmethod=syntax
 autocmd FileType c\|cpp set nofoldenable
+
+let g:tex_flavor='latex'
+
+let g:vimtex_view_method='zathura'
 
 " change ultisnips binds
 let g:UltiSnipsExpandTrigger="<tab>"
