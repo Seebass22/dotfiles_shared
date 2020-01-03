@@ -1,6 +1,6 @@
 #usepackage
 snippet up
-\usepackage[$1]{${2:package}} ${0}
+\usepackage[$2]{${1:package}}${0}
 endsnippet
 
 #\begin{}...\end{}
@@ -22,14 +22,18 @@ snippet subsub
 \subsubsection{${1:heading}}${0}
 endsnippet
 
+snippet it
+\item{$1}
+endsnippet
+
 ##MATH
 snippet frac
 \frac{$1}{$2}
 endsnippet
 
-snippet '([A-Za-z])(\d)' "auto subscript" wrA
-`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
-endsnippet
+# snippet '([A-Za-z])(\d)' "auto subscript" wrA
+# `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+# endsnippet
 
 snippet '([A-Za-z])_([A-Za-z0-9]+)' "subscript" wr
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}

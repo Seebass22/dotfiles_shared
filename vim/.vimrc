@@ -185,8 +185,6 @@ autocmd FileType c\|cpp set nofoldenable
 
 let g:tex_flavor='latex'
 
-let g:vimtex_view_method='zathura'
-
 " change ultisnips binds
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -199,6 +197,17 @@ let g:UltiSnipsSnippetDirectories=["ultisnips"]
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
+" use zathura as PDF viewer for vimtex
+let g:vimtex_view_method='zathura'
+
+" let g:vimtex_complete_enabled=0
+
+" used for callback
+let g:vimtex_compiler_progname="nvr"
+
+" enable folding
+let g:vimtex_fold_enabled=1
+let g:vimtex_fold_manual=1
 
 """OMNISHARP
 "let omnisharp use system installed mono
