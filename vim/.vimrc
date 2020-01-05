@@ -60,8 +60,8 @@ Plugin 'junegunn/fzf.vim'
 "latex plugin
 Plugin 'lervag/vimtex'
 
-"default snippets
-"Plugin 'honza/vim-snippets'
+"note plugin
+Plugin 'vimwiki/vimwiki'
 
 "C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
@@ -194,9 +194,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
 " use zathura as PDF viewer for vimtex
 let g:vimtex_view_method='zathura'
 
@@ -209,9 +206,6 @@ let g:vimtex_compiler_progname="nvr"
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
 
-"""OMNISHARP
-"let omnisharp use system installed mono
-" let g:OmniSharp_server_use_mono = 1
 
-"Use the stdio version of OmniSharp-roslyn (needed for neovim)
-" let g:OmniSharp_server_stdio = 1
+" vimwiki with md support
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
