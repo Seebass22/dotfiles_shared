@@ -63,6 +63,9 @@ Plugin 'lervag/vimtex'
 "note plugin
 Plugin 'vimwiki/vimwiki'
 
+"align stuff
+Plugin 'junegunn/vim-easy-align'
+
 "C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
 
@@ -175,6 +178,7 @@ nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 command Octave !octave --no-gui %
 command Plot r !~/bashscripts/plot.sh
 command Plot2 r !~/bashscripts/plot.sh -r
+command Music r !~/bashscripts/musicstatus.sh
 
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
@@ -209,3 +213,9 @@ let g:vimtex_fold_manual=1
 
 " vimwiki with md support
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+"
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
