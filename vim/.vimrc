@@ -17,10 +17,7 @@ Plugin 'vim-airline/vim-airline'
 
 "wal colortheme
 Plugin 'dylanaraps/wal.vim'
-
-"statusline themes
-Plugin 'vim-airline/vim-airline-themes'
-
+"
 "highlights yanked text
 Plugin 'machakann/vim-highlightedyank'
 
@@ -33,17 +30,11 @@ Plugin 'tpope/vim-rhubarb'
 "comment stuff out easily
 Plugin 'tpope/vim-commentary'
 
-" surround motion
-Plugin 'tpope/vim-surround'
-
-" repeat plugin motions
-Plugin 'tpope/vim-repeat'
+"search/select/edit sandwiched textobjects
+Plugin 'machakann/vim-sandwich'
 
 "i3 config syntax highlighting
 Plugin 'PotatoesMaster/i3-vim-syntax'
-
-" " two letter find movement
-" Plugin 'justinmk/vim-sneak'
 
 "snippet functionality
 Plugin 'SirVer/ultisnips'
@@ -51,7 +42,7 @@ Plugin 'SirVer/ultisnips'
 "call tmux/nvim terminal for make
 Plugin 'tpope/vim-dispatch'
 
-"nvim terminal support for dispatch
+"nvim terminal support for dispatch (:Make)
 Plugin 'radenling/vim-dispatch-neovim'
 
 "fzf functions
@@ -147,10 +138,10 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_left_sep='>'
 "let g:airline_right_sep='<'
 
-"invisible characters
-
 if has('nvim')
+	" show the effects of commands incrementally
 	set inccommand=nosplit
+	" invisible characters
 	set listchars=tab:▸\ ,eol:¬
 endif
 
@@ -216,6 +207,11 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-"
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" fzf.vim
+nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
+nmap <leader>g :GFiles<cr>|            " fuzzy find git files in the working directory
+nmap <leader>b :Buffers<cr>|           " fuzzy find an open buffer
+vnoremap <c-p> "ry:<c-u>Rg <c-r>r<cr>| " Rg search visual selection
