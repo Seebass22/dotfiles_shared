@@ -214,4 +214,6 @@ nmap ga <Plug>(EasyAlign)
 nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
 nmap <leader>g :GFiles<cr>|            " fuzzy find git files in the working directory
 nmap <leader>b :Buffers<cr>|           " fuzzy find an open buffer
+nmap <leader>t :BTags<cr>|             " fuzzy find tags in current buffer
+nmap <leader>T :Tags<cr>|              " fuzzy find tags across project
 vnoremap <c-p> "ry:<c-u>Rg <c-r>r<cr>| " Rg search visual selection
