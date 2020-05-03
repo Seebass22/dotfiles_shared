@@ -57,6 +57,12 @@ Plugin 'vimwiki/vimwiki'
 "align stuff
 Plugin 'junegunn/vim-easy-align'
 
+"better f, F
+Plugin 'unblevable/quick-scope'
+
+"database integration
+Plugin 'tpope/vim-dadbod'
+
 "C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
 
@@ -209,6 +215,11 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" ***QUICK-SCOPE***
+" Trigger a highlight in the appropriate direction when pressing these keys:
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"
 
 " fzf.vim
 nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
