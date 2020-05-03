@@ -173,19 +173,33 @@ nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
 "run gnu octave on file
 command Octave !octave --no-gui %
+"format tables
 command Plot r !~/bashscripts/plot.sh
 command Plot2 r !~/bashscripts/plot.sh -r
+"print MPD/Spotify song
 command Music r !~/bashscripts/musicstatus.sh
+"sign code file
+command Sign 0r ~/Documents/notes/echtzeitsysteme_sign
+"include guards
+command Header norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
+command Include norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
+command Guards norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
 
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
 autocmd FileType vhdl setlocal commentstring=--\ %s
 
+" automatic folding for c/cpp, folds open first
 autocmd FileType c\|cpp set foldmethod=syntax
 autocmd FileType c\|cpp set nofoldenable
 
 let g:tex_flavor='latex'
 
+" better diffs
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
+
+" ***ULTISNIPS***
 " change ultisnips binds
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -195,6 +209,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
+" ***VIMTEX***
 " use zathura as PDF viewer for vimtex
 let g:vimtex_view_method='zathura'
 
@@ -208,9 +223,11 @@ let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
 
 
+" ***VIMWIKI***
 " vimwiki with md support
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
+" ***EasyAlign**
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -221,7 +238,7 @@ nmap ga <Plug>(EasyAlign)
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "
 
-" fzf.vim
+" ***FZF***
 nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
 nmap <leader>g :GFiles<cr>|            " fuzzy find git files in the working directory
 nmap <leader>b :Buffers<cr>|           " fuzzy find an open buffer
