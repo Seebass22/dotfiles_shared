@@ -154,8 +154,11 @@ endif
 "backspace switches to alternative buffer
 nnoremap <bs> <c-^>
 
-"F2 runs :make
+"F2 runs make
 nnoremap <F2> :Make<CR>
+
+"F3 runs make run (nvim terminal)
+nnoremap <F3> :Make run<CR>
 
 "delete switches to next buffer
 nnoremap <DEL> :bn<CR>
@@ -188,6 +191,7 @@ command Guards norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
 "comment syntax for markdown (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
 autocmd FileType vhdl setlocal commentstring=--\ %s
+autocmd FileType matlab setlocal commentstring=\%\ %s"
 
 " automatic folding for c/cpp, folds open first
 autocmd FileType c\|cpp set foldmethod=syntax
