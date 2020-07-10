@@ -57,11 +57,12 @@ Plugin 'vimwiki/vimwiki'
 "align stuff
 Plugin 'junegunn/vim-easy-align'
 
-"better f, F
-Plugin 'unblevable/quick-scope'
-
 "database integration
 Plugin 'tpope/vim-dadbod'
+
+
+"easier web-dev
+Plugin 'mattn/emmet-vim'
 
 "C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
