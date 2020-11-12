@@ -57,12 +57,14 @@ Plugin 'vimwiki/vimwiki'
 "align stuff
 Plugin 'junegunn/vim-easy-align'
 
-"database integration
-Plugin 'tpope/vim-dadbod'
-
+"pico-8 syntax highlighting
+Plugin 'ssteinbach/vim-pico8-syntax'
 
 "easier web-dev
 Plugin 'mattn/emmet-vim'
+
+"rainbow parens
+Plugin 'luochen1990/rainbow'
 
 "C# autocompletion
 " Plugin 'OmniSharp/omnisharp-vim'
@@ -161,8 +163,11 @@ nnoremap <F2> :Make<CR>
 "F3 runs make run (nvim terminal)
 nnoremap <F3> :Make run<CR>
 
-"delete switches to next buffer
-nnoremap <DEL> :bn<CR>
+"F3 runs octave on file (nvim terminal)
+autocmd filetype matlab nnoremap <F3> :terminal octave -q --no-gui --persist %<CR>
+
+"F4 toggles relativenumber
+nnoremap <F4> :set rnu!<CR>
 
 "unmap ZZ
 nnoremap ZZ <Nop>
@@ -176,20 +181,21 @@ nnoremap <Space><space> /<++><Enter>"_c4l
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
 "run gnu octave on file
-command Octave !octave --no-gui %
+command Octave !octave -q --no-gui %
 "format tables
 command Plot r !~/bashscripts/plot.sh
 command Plot2 r !~/bashscripts/plot.sh -r
 "print MPD/Spotify song
 command Music r !~/bashscripts/musicstatus.sh
-"sign code file
-command Sign 0r ~/Documents/notes/echtzeitsysteme_sign
 "include guards
 command Header norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
 command Include norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
 command Guards norm ggO%hr_0gUWI#ifndef yyplcwdefineGo#endif
 
-"comment syntax for markdown (vim-commentary plugin)
+"LaTeX
+command Latex 0r ~/Documents/notes/vim_include/LaTeX_vim
+
+"comment syntax (vim-commentary plugin)
 autocmd FileType markdown setlocal commentstring=<\!--\ %s\ -->
 autocmd FileType vhdl setlocal commentstring=--\ %s
 autocmd FileType matlab setlocal commentstring=\%\ %s"
@@ -227,7 +233,6 @@ let g:vimtex_compiler_progname="nvr"
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
 
-
 " ***VIMWIKI***
 " vimwiki with md support
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
@@ -250,3 +255,6 @@ nmap <leader>b :Buffers<cr>|           " fuzzy find an open buffer
 nmap <leader>t :BTags<cr>|             " fuzzy find tags in current buffer
 nmap <leader>T :Tags<cr>|              " fuzzy find tags across project
 vnoremap <c-p> "ry:<c-u>Rg <c-r>r<cr>| " Rg search visual selection
+
+nmap <Left> :bp<cr>
+nmap <Right> :bn<cr>

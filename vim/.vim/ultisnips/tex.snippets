@@ -1,3 +1,4 @@
+##general
 #usepackage
 snippet up
 \usepackage[$2]{${1:package}}${0}
@@ -22,10 +23,33 @@ snippet subsub
 \subsubsection{${1:heading}}${0}
 endsnippet
 
+snippet toc
+\tableofcontents
+endsnippet
+
+snippet img
+\includegraphics[${2}]{${1}}
+endsnippet
+
+snippet cap
+\caption{${1}}
+endsnippet
+
+snippet tit
+\frametitle{${1}}
+endsnippet
+
 snippet it
 \item{$1}
 endsnippet
 
+#python listing
+snippet lst
+\begin{lstlisting}[language=python]
+${1}
+\end{lstlisting}
+endsnippet
+####################
 ##MATH
 snippet frac
 \frac{$1}{$2}
@@ -39,6 +63,7 @@ snippet '([A-Za-z])_([A-Za-z0-9]+)' "subscript" wr
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+####################
 ##LOGICAL
 snippet nor
 \neg ($1 \lor $2)
@@ -56,6 +81,7 @@ snippet dnand
 \neg ($1 \land $1)
 endsnippet
 
+####################
 ##TIKZ
 snippet plot
 \begin{tikzpicture}
