@@ -215,33 +215,6 @@ let g:tex_flavor='latex'
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 
-" ***ULTISNIPS***
-" change ultisnips binds
-"TODO (commented for CoC)
-let g:UltiSnipsExpandTrigger="<nul>"
-let g:UltiSnipsJumpForwardTrigger="<nul>"
-let g:UltiSnipsJumpBackwardTrigger="<nul>"
-" old
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" makes custom snippets work
-let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
-let g:UltiSnipsSnippetDirectories=["ultisnips"]
-
-" ***VIMTEX***
-" use zathura as PDF viewer for vimtex
-let g:vimtex_view_method='zathura'
-
-" let g:vimtex_complete_enabled=0
-
-" used for callback
-let g:vimtex_compiler_progname="nvr"
-
-" enable folding
-let g:vimtex_fold_enabled=1
-let g:vimtex_fold_manual=1
 
 " ***VIMWIKI***
 " vimwiki with md support
@@ -257,7 +230,7 @@ nmap ga <Plug>(EasyAlign)
 " ***QUICK-SCOPE***
 " Trigger a highlight in the appropriate direction when pressing these keys:
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-"
+
 
 " ***FZF***
 nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
@@ -272,6 +245,7 @@ nmap <Right> :bn<cr>
 
 " ***GODOT***
 nnoremap <F6> :GodotRun<cr>
+
 
 " ***COC***
 " Some servers have issues with backup files, see #649.
@@ -432,3 +406,30 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+" ***ULTISNIPS***
+" change ultisnips binds
+"TODO (changed for CoC)
+autocmd filetype tex CocDisable
+autocmd filetype tex let g:UltiSnipsExpandTrigger="<tab>"
+autocmd filetype tex let g:UltiSnipsJumpForwardTrigger="<tab>"
+autocmd filetype tex let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" makes custom snippets work
+let g:UltiSnipsSnippetsDir = "~/.vim/ultisnips"
+let g:UltiSnipsSnippetDirectories=["ultisnips"]
+
+" ***VIMTEX***
+" use zathura as PDF viewer for vimtex
+let g:vimtex_view_method='zathura'
+
+" let g:vimtex_complete_enabled=0
+
+" used for callback
+let g:vimtex_compiler_progname="nvr"
+
+" enable folding
+let g:vimtex_fold_enabled=1
+let g:vimtex_fold_manual=1
+
