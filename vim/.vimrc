@@ -73,6 +73,9 @@ Plugin 'habamax/vim-godot'
 "" Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
+"live markdown preview
+Plugin 'iamcco/markdown-preview.nvim'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
