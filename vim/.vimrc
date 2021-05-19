@@ -76,6 +76,9 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 "live markdown preview
 Plugin 'iamcco/markdown-preview.nvim'
 
+"TOML syntax
+Plugin 'cespare/vim-toml'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
