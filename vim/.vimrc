@@ -63,9 +63,6 @@ Plugin 'ssteinbach/vim-pico8-syntax'
 "easier web-dev
 Plugin 'mattn/emmet-vim'
 
-"rainbow parens
-" Plugin 'luochen1990/rainbow'
-
 "godot stuff
 Plugin 'habamax/vim-godot'
 
@@ -78,6 +75,12 @@ Plugin 'iamcco/markdown-preview.nvim'
 
 "TOML syntax
 Plugin 'cespare/vim-toml'
+
+"tweaks for writing prose
+Plugin 'reedes/vim-pencil'
+
+"distraction-free writing
+Plugin 'junegunn/goyo.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
