@@ -7,6 +7,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("~/Documents/org-mode/todolist/tasklist.org"))
  '(package-selected-packages
    '(magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
@@ -84,3 +85,10 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; make esc quit prompts
 (global-display-line-numbers-mode)
 (setq display-line-numbers 'relative)
+
+;; disable lockfiles, save backup files in tmp dir
+(setq create-lockfiles nil)
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
