@@ -7,7 +7,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(evil-collection evil-commentary evil)))
+ '(package-selected-packages
+   '(projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -25,14 +26,13 @@
 (setq use-package-always-ensure t)
 
 ;; EVIL
-
 (use-package evil
   :init
   (setq evil-want-keybinding nil)
   (setq evil-want-integration t)
+  (setq evil-want-C-u-scroll t)
   :config
   (evil-mode 1)
-  (setq evil-want-C-u-scroll t)
 
   (use-package evil-collection
     :config
@@ -43,6 +43,33 @@
     (evil-commentary-mode))
   )
 
+;; IVY
+(use-package ivy
+  :config
+  (ivy-mode 1))
+
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1)
+;;   :custom ((doom-modeline-height 15)))
+;; (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
+
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Documents/python")
+    (setq projectile-project-search-path '("~/Documents/python")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
 ;; UI
 (setq inhibit-startup-message t) ; disable start screen
 (scroll-bar-mode -1) ; disable scrollbar
@@ -50,4 +77,8 @@
 ;;(tooltip-mode -1) ; disable tooltips
 (menu-bar-mode -1) ; disable menu bar
 
+;; MISC
 (server-start)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; make esc quit prompts
+(global-display-line-numbers-mode)
+(setq display-line-numbers 'relative)
