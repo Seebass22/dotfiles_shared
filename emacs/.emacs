@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -69,6 +69,8 @@
   (when (file-directory-p "~/Documents/python")
     (setq projectile-project-search-path '("~/Documents/python")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package magit)
 
 ;; UI
 (setq inhibit-startup-message t) ; disable start screen
