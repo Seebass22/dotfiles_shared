@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files '("~/Documents/org-mode/todolist/tasklist.org"))
  '(package-selected-packages
-   '(magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -26,6 +26,8 @@
 
 (setq use-package-always-ensure t)
 
+(use-package diminish)
+
 ;; EVIL
 (use-package evil
   :init
@@ -36,6 +38,7 @@
   (evil-mode 1)
 
   (use-package evil-collection
+    :diminish unimpaired-mode
     :config
     (evil-collection-init))
 
@@ -46,14 +49,21 @@
 
 ;; IVY
 (use-package ivy
+  :diminish ivy-mode
   :config
   (ivy-mode 1))
 
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode 1)
-;;   :custom ((doom-modeline-height 15)))
-;; (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
+;; THEMES
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+(use-package all-the-icons) ; run M-x all-the-icons-install-fonts
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one t)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (use-package which-key
   :init (which-key-mode)
