@@ -7,9 +7,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/Documents/org-mode/todolist/tasklist.org"))
  '(package-selected-packages
-   '(org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,14 +43,17 @@
 
   (use-package evil-commentary
     :config
-    (evil-commentary-mode))
-  )
+    (evil-commentary-mode)))
 
 ;; IVY
 (use-package ivy
   :diminish ivy-mode
   :config
   (ivy-mode 1))
+(use-package counsel)
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
 
 ;; THEMES
 (use-package doom-modeline
@@ -64,7 +66,6 @@
   (load-theme 'doom-one t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
-
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
@@ -75,7 +76,17 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 1))
+  (setq which-key-idle-delay 0.3))
+
+(use-package helpful
+  :custom
+  (setq counsel-describe-function-function #'helpful-callable)
+  (setq counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 
 (use-package projectile
   :diminish projectile-mode
@@ -100,6 +111,7 @@
 (server-start)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; make esc quit prompts
 (global-display-line-numbers-mode)
+(counsel-mode)
 (setq display-line-numbers 'relative)
 
 ;; disable lockfiles, save backup files in tmp dir
@@ -108,3 +120,9 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+;; ORG-MODE
+(setq org-log-into-drawer t)
+(setq org-agenda-files
+      '("~/Documents/org-mode/todolist/tasklist.org"
+	"~/Documents/org-mode/todolist/birthdays.org"))
