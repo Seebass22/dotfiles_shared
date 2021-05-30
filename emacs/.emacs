@@ -126,3 +126,15 @@
 (setq org-agenda-files
       '("~/Documents/org-mode/todolist/tasklist.org"
 	"~/Documents/org-mode/todolist/birthdays.org"))
+;; allow running elisp and python code blocks
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (python . t)))
+;; code block template expansion
+;; (<py <TAB> for python block)
+(require 'org-tempo)
+;; templates for code blocks
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
