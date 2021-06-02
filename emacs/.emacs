@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -57,7 +57,9 @@
   :diminish ivy-mode
   :config
   (ivy-mode 1))
-(use-package counsel)
+(use-package counsel
+  :config
+  (counsel-mode))
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
@@ -117,9 +119,6 @@
 ;; MISC
 (server-start)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; make esc quit prompts
-(global-display-line-numbers-mode)
-(counsel-mode)
-(setq display-line-numbers 'relative)
 
 ;; disable lockfiles, save backup files in tmp dir
 (setq create-lockfiles nil)
@@ -151,3 +150,14 @@
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
+;; DIRED
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-single-up-directory
+    "l" 'dired-single-buffer))
+(use-package dired-single)
