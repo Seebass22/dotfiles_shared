@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -51,6 +51,10 @@
 (use-package evil-commentary
   :config
   (evil-commentary-mode))
+(use-package evil-matchit
+  :config
+  (global-evil-matchit-mode 1))
+
 
 ;; IVY
 (use-package ivy
@@ -119,6 +123,7 @@
 ;; MISC
 (server-start)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; make esc quit prompts
+(global-unset-key (kbd "C-z"))
 
 ;; disable lockfiles, save backup files in tmp dir
 (setq create-lockfiles nil)
@@ -161,3 +166,19 @@
     "h" 'dired-single-up-directory
     "l" 'dired-single-buffer))
 (use-package dired-single)
+
+;; ERC
+(setq erc-server "irc.libera.chat"
+      erc-nick "Seebass22"
+      erc-track-exclude-types '("JOIN" "NICK" "QUIT" "MODE" "AWAY")
+      erc-keywords '("vim"))
+(use-package erc-hl-nicks
+  :after erc
+  :config
+  (add-to-list 'erc-modules 'hl-nicks))
+
+;; AUCTeX
+(use-package latex
+  :ensure auctex)
+(use-package auctex-latexmk)
+(auctex-latexmk-setup)
