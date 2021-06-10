@@ -51,9 +51,6 @@ Plugin 'junegunn/fzf.vim'
 "latex plugin
 Plugin 'lervag/vimtex'
 
-"note plugin
-Plugin 'vimwiki/vimwiki'
-
 "align stuff
 Plugin 'junegunn/vim-easy-align'
 
@@ -227,12 +224,6 @@ let g:tex_flavor='latex'
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 
-
-" ***VIMWIKI***
-" vimwiki with md support
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_table_mappings = 0
-
 " ***EasyAlign**
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -254,6 +245,7 @@ vnoremap <c-p> "ry:<c-u>Rg <c-r>r<cr>| " Rg search visual selection
 
 nmap <Left> :bp<cr>
 nmap <Right> :bn<cr>
+
 
 " ***GODOT***
 nnoremap <F6> :GodotRun<cr>
@@ -444,4 +436,3 @@ let g:vimtex_compiler_progname="nvr"
 " enable folding
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
-
