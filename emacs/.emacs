@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -68,6 +68,7 @@
   :init
   (ivy-rich-mode 1))
 
+
 ;; THEMES
 (use-package doom-modeline
   :ensure t
@@ -85,6 +86,8 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
+
+;; HELPFUL STUFF
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
@@ -101,6 +104,7 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -112,6 +116,10 @@
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package magit)
+
+;; indirect editing for markdown code blocks
+(use-package edit-indirect)
+
 
 ;; UI
 (setq inhibit-startup-message t) ; disable start screen
@@ -132,6 +140,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+
 ;; ORG-MODE
 (setq org-log-into-drawer t)
 (setq org-agenda-files
@@ -150,12 +159,15 @@
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
+(add-to-list 'org-structure-template-alist '("o" . "src octave"))
 ;; syntax highlighting for LaTeX export
 (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
       org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
 
 ;; DIRED
 (use-package dired
@@ -169,6 +181,7 @@
     "l" 'dired-single-buffer))
 (use-package dired-single)
 
+
 ;; ERC
 (setq erc-server "irc.libera.chat"
       erc-nick "Seebass22"
@@ -179,6 +192,7 @@
   :config
   (add-to-list 'erc-modules 'hl-nicks))
 
+
 ;; AUCTeX
 (use-package latex
   :ensure auctex)
@@ -187,6 +201,7 @@
 
 (use-package flycheck
   :defer t)
+
 
 ;; LSP-MODE
 (use-package lsp-mode
@@ -201,7 +216,7 @@
   :bind (:map company-active-map
 	      ("<tab>" . company-complete-selection))
   (:map lsp-mode-map
-	("<tab" . company-indent-or-complete-common))
+	("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -224,9 +239,21 @@
   :defer t
   :config
   (setq lsp-vhdl-server 'ghdl-ls
-        lsp-vhdl-server-path (executable-find "ghdl-ls")
-        lsp-vhdl--params nil)
+	lsp-vhdl-server-path (executable-find "ghdl-ls")
+	lsp-vhdl--params nil)
   (require 'lsp-vhdl)
   :hook (vhdl-mode . (lambda()
-                       (lsp t)
-                       (flycheck-mode t))))
+		       (lsp t)
+		       (flycheck-mode t))))
+
+
+;; EWW
+;; follow gopher and gemini links from EWW
+(use-package elpher)
+(advice-add 'eww-browse-url :around 'elpher:eww-browse-url)
+(defun elpher:eww-browse-url (original url &optional new-window)
+  "Handle gemini links."
+  (cond ((string-match-p "\\`\\(gemini\\|gopher\\)://" url)
+	 (require 'elpher)
+	 (elpher-go url))
+	(t (funcall original url new-window))))
