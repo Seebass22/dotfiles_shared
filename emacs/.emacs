@@ -77,7 +77,7 @@
 (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-one t)
+  (load-theme 'doom-gruvbox t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
@@ -270,4 +270,14 @@
   :keymaps 'normal
   ;; bind "SPC a"
   "a" 'org-agenda
-  "f" 'projectile-find-file)
+  "f" 'counsel-find-file
+  "pp" 'projectile-switch-project
+  "pf" 'projectile-find-file)
+(general-define-key
+ :states 'normal
+ "C-l" 'evil-ex-nohighlight)
+
+
+(let ((email-file  "~/.emacs.d/emacs_email.el"))
+    (when (file-exists-p email-file)
+    (load-file email-file)))
