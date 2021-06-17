@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -220,8 +220,6 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
-(use-package yasnippet
-  :config (yas-global-mode 1))
 ;; LSP-LANGUAGES
 ;; python
 (use-package lsp-pyright
@@ -247,6 +245,17 @@
   :hook (vhdl-mode . (lambda()
 		       (lsp t)
 		       (flycheck-mode t))))
+;; godot
+(use-package gdscript-mode
+  :config
+  (setq warning-suppress-types '((lsp-mode)))
+  :hook (gdscript-mode . lsp))
+
+
+;; YASNIPPET
+(use-package yasnippet
+  :config (yas-global-mode 1))
+(use-package yasnippet-snippets)
 
 
 ;; EWW
@@ -279,5 +288,5 @@
 
 
 (let ((email-file  "~/.emacs.d/emacs_email.el"))
-    (when (file-exists-p email-file)
+  (when (file-exists-p email-file)
     (load-file email-file)))
