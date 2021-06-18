@@ -210,6 +210,8 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook
   (lsp-enable-which-key-integration t))
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
@@ -280,11 +282,17 @@
   ;; bind "SPC a"
   "a" 'org-agenda
   "f" 'counsel-find-file
+  "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file)
 (general-define-key
  :states 'normal
  "C-l" 'evil-ex-nohighlight)
+
+
+;; C languages indentation style
+(setq c-default-style "linux"
+      c-basic-offset 4)
 
 
 (let ((email-file  "~/.emacs.d/emacs_email.el"))
