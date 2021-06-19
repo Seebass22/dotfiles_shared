@@ -291,7 +291,17 @@
   "f" 'counsel-find-file
   "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
-  "pf" 'projectile-find-file)
+  "pf" 'projectile-find-file
+  ;; git
+  "g"   '(:ignore t :which-key "git")
+  "gs"  'magit-status
+  "gd"  'magit-diff-unstaged
+  "gF"  'Magit-pull-from-pushremote
+  "gl"   '(:ignore t :which-key "log")
+  "gll" 'magit-log-current
+  "glf" 'magit-log-buffer-file)
+
+
 (general-define-key
  :states 'normal
  "C-l" 'evil-ex-nohighlight)
