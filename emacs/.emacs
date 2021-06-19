@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -279,6 +279,13 @@
 	(t (funcall original url new-window))))
 
 
+;; VTERM
+(use-package vterm
+  :commands vterm
+  :config
+  (setq vterm-max-scrollback 10000))
+
+
 ;; GENERAL
 (use-package general)
 (general-create-definer my-leader-def
@@ -292,6 +299,7 @@
   "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
+  "t" 'vterm
   ;; git
   "g"   '(:ignore t :which-key "git")
   "gs"  'magit-status
@@ -300,8 +308,6 @@
   "gl"   '(:ignore t :which-key "log")
   "gll" 'magit-log-current
   "glf" 'magit-log-buffer-file)
-
-
 (general-define-key
  :states 'normal
  "C-l" 'evil-ex-nohighlight)
