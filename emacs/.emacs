@@ -55,6 +55,13 @@
   :config
   (global-evil-matchit-mode 1))
 (evil-select-search-module 'evil-search-module 'evil-search)
+(use-package undo-tree
+  :after evil
+  :diminish
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode 1))
+
 
 ;; IVY
 (use-package ivy
