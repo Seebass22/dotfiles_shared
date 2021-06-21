@@ -296,15 +296,19 @@
   ;; bind "SPC a"
   "a" 'org-agenda
   "f" 'counsel-find-file
+  "b" 'switch-to-buffer
+  "t" 'vterm
+  "d" 'dired-jump
+  ;; projectile
   "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
-  "t" 'vterm
   ;; git
   "g"   '(:ignore t :which-key "git")
   "gs"  'magit-status
   "gd"  'magit-diff-unstaged
-  "gF"  'Magit-pull-from-pushremote
+  "gF"  'magit-pull-from-pushremote
+  "gg"  'magit-file-dispatch
   "gl"   '(:ignore t :which-key "log")
   "gll" 'magit-log-current
   "glf" 'magit-log-buffer-file)
