@@ -84,7 +84,7 @@
 (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-one t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
@@ -210,6 +210,10 @@
   :defer t)
 
 
+;; R support
+(use-package ess)
+
+
 ;; LSP-MODE
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -219,6 +223,7 @@
   (lsp-enable-which-key-integration t))
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+(setq lsp-enable-indentation nil)
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
