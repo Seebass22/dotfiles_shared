@@ -151,9 +151,9 @@
 ;; ORG-MODE
 (setq org-log-into-drawer t)
 (setq org-agenda-files
-      '("~/Documents/org-mode/todolist/tasklist.org"
-	"~/Documents/org-mode/todolist/exams.org"
-	"~/Documents/org-mode/todolist/birthdays.org"))
+      '("~/Documents/org-mode/orgnotes/tasklist.org"
+	"~/Documents/org-mode/orgnotes/exams.org"
+	"~/Documents/org-mode/orgnotes/birthdays.org"))
 ;; allow running elisp and python code blocks
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -311,6 +311,11 @@
   "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
+  ;; bookmarks
+  "r" '(:ignore t :which-key "bookmarks")
+  "rl" 'bookmark-bmenu-list
+  "rj" 'bookmark-jump
+  "rm" 'bookmark-set
   ;; git
   "g"   '(:ignore t :which-key "git")
   "gs"  'magit-status
