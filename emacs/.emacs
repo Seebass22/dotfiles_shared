@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(pdf-tools rust-mode olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -210,8 +210,11 @@
   :defer t)
 
 
+;; languages
 ;; R support
 (use-package ess)
+;; rust
+(use-package rust-mode)
 
 
 ;; LSP-MODE
@@ -325,6 +328,16 @@
 ;; C languages indentation style
 (setq c-default-style "linux"
       c-basic-offset 4)
+
+
+;; distraction-free writing
+(use-package olivetti)
+
+
+;; better PDF viewer
+(use-package pdf-tools
+  :config
+  (pdf-tools-install))
 
 
 (let ((email-file  "~/.emacs.d/emacs_email.el"))
