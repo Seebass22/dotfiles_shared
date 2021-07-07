@@ -118,8 +118,6 @@
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "~/Documents/python")
-    (setq projectile-project-search-path '("~/Documents/python")))
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package magit)
@@ -150,6 +148,7 @@
 
 ;; ORG-MODE
 (setq org-log-into-drawer t)
+(setq org-catch-invisible-edits 'error)
 (setq org-agenda-files
       '("~/Documents/org-mode/orgnotes/tasklist.org"
 	"~/Documents/org-mode/orgnotes/exams.org"
