@@ -314,9 +314,25 @@
   ;; bind "SPC a"
   "a" 'org-agenda
   "f" 'counsel-find-file
-  "b" 'switch-to-buffer
   "t" 'vterm
   "d" 'dired-jump
+  "e" 'org-edit-special
+  "q" 'org-edit-src-exit
+  ;; buffer management
+  "b" '(:ignore t :which-key "buffer stuff")
+  "bb" 'persp-switch-to-buffer
+  "bp" 'persp-switch-to-buffer*
+  "bi" 'persp-ibuffer
+  "br" 'rename-buffer
+  ;; workspace management (perspective.el)
+  "w" '(:ignore t :which-key "workspace stuff")
+  "ws" 'persp-switch
+  "wn" 'persp-next
+  "wp" 'persp-prev
+  "wa" 'persp-add-buffer
+  "wA" 'persp-set-buffer
+  "wr" 'persp-rename
+  "wd" 'persp-kill
   ;; projectile
   "p" '(:ignore t :which-key "project stuff")
   "pp" 'projectile-switch-project
@@ -363,3 +379,13 @@
 
 ;; enable features disabled by default
 (put 'narrow-to-region 'disabled nil)
+
+
+(use-package perspective
+  :config
+  (persp-mode))
+(add-hook 'ibuffer-hook
+	  (lambda ()
+	    (persp-ibuffer-set-filter-groups)
+	    (unless (eq ibuffer-sorting-mode 'alphabetic)
+	      (ibuffer-do-sort-by-alphabetic))))
