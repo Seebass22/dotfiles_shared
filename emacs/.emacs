@@ -228,6 +228,9 @@
 (add-to-list 'tree-sitter-major-mode-language-alist '(mhtml-mode . html))
 
 ;; LSP-MODE
+(use-package company)
+(setq company-idle-delay 0.0
+      company-minimum-prefix-length 1)
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -237,16 +240,6 @@
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 (setq lsp-enable-indentation nil)
-(use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-	      ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
-	("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
 ;; LSP-LANGUAGES
 ;; python
 (use-package lsp-pyright
