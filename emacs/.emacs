@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,7 +84,7 @@
 (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-one t)
+  (load-theme 'doom-outrun-electric t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
@@ -374,6 +374,7 @@
 (put 'narrow-to-region 'disabled nil)
 
 
+;; workspace management
 (use-package perspective
   :config
   (persp-mode))
@@ -382,3 +383,21 @@
 	    (persp-ibuffer-set-filter-groups)
 	    (unless (eq ibuffer-sorting-mode 'alphabetic)
 	      (ibuffer-do-sort-by-alphabetic))))
+
+(use-package dashboard
+  :init
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  ;; use standard emacs logo as banner
+  (setq dashboard-startup-banner `logo)
+  (setq dashboard-center-content t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-items '((recents . 5)
+			  (agenda . 5 )
+			  (bookmarks . 5)
+			  (projects . 3)
+			  ))
+  :config
+  (dashboard-setup-startup-hook)
+  (dashboard-modify-heading-icons '((recents . "file-text")
+				    (bookmarks . "book"))))
