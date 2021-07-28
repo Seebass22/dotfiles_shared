@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,9 +19,14 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-verbose t)
 
 (eval-when-compile
   (require 'use-package))
+
+(use-package exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (setq use-package-always-ensure t)
 
@@ -42,16 +47,17 @@
   :config
   (evil-collection-init))
 (use-package evil-org
-  :ensure t
   :after org
   :hook (org-mode . (lambda () evil-org-mode))
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 (use-package evil-commentary
+  :after evil
   :config
   (evil-commentary-mode))
 (use-package evil-matchit
+  :after evil
   :config
   (global-evil-matchit-mode 1))
 (evil-select-search-module 'evil-search-module 'evil-search)
@@ -72,6 +78,7 @@
   :config
   (counsel-mode))
 (use-package ivy-rich
+  :after ivy
   :init
   (ivy-rich-mode 1))
 
@@ -84,11 +91,10 @@
 (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-outrun-electric t)
+  (load-theme 'doom-gruvbox t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
-  :after org
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
@@ -96,12 +102,14 @@
 
 ;; HELPFUL STUFF
 (use-package which-key
-  :init (which-key-mode)
+  :defer 0
   :diminish which-key-mode
   :config
+  (which-key-mode)
   (setq which-key-idle-delay 0.3))
 
 (use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
   :custom
   (setq counsel-describe-function-function #'helpful-callable)
   (setq counsel-describe-variable-function #'helpful-variable)
@@ -120,7 +128,8 @@
   :init
   (setq projectile-switch-project-action #'projectile-dired))
 
-(use-package magit)
+(use-package magit
+  :commands magit-status)
 
 ;; indirect editing for markdown code blocks
 (use-package edit-indirect)
@@ -154,20 +163,22 @@
 	"~/Documents/org-mode/orgnotes/exams.org"
 	"~/Documents/org-mode/orgnotes/birthdays.org"))
 ;; allow running elisp and python code blocks
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (python . t)))
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t))))
 ;; code block template expansion
 ;; (<py <TAB> for python block)
-(require 'org-tempo)
-;; templates for code blocks
-(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("py" . "src python"))
-(add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
-(add-to-list 'org-structure-template-alist '("o" . "src octave"))
-(add-to-list 'org-structure-template-alist '("r" . "src rust"))
+(with-eval-after-load 'org
+  (require 'org-tempo)
+  ;; templates for code blocks
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
+  (add-to-list 'org-structure-template-alist '("o" . "src octave"))
+  (add-to-list 'org-structure-template-alist '("r" . "src rust")))
 ;; syntax highlighting for LaTeX export
 (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
@@ -186,7 +197,8 @@
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
     "l" 'dired-single-buffer))
-(use-package dired-single)
+(use-package dired-single
+  :after dired)
 
 
 ;; ERC
@@ -203,8 +215,10 @@
 ;; AUCTeX
 (use-package latex
   :ensure auctex)
-(use-package auctex-latexmk)
-(auctex-latexmk-setup)
+(use-package auctex-latexmk
+  :after latex
+  :config
+  (auctex-latexmk-setup))
 
 (use-package flycheck
   :defer t)
@@ -212,23 +226,28 @@
 
 ;; languages
 ;; R support
-(use-package ess)
+(use-package ess
+  :defer t)
 ;; rust
-(use-package rustic)
-(setq rustic-lsp-server 'rls)
+(use-package rustic
+  :defer 5)
 (use-package csharp-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
 
 ;; TREE-SITTER
-(use-package tree-sitter)
-(use-package tree-sitter-langs)
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-(add-to-list 'tree-sitter-major-mode-language-alist '(mhtml-mode . html))
+(use-package tree-sitter
+  :defer 0
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(mhtml-mode . html)))
+(use-package tree-sitter-langs
+  :after tree-sitter)
 
 ;; LSP-MODE
-(use-package company)
+(use-package company
+  :after lsp-mode)
 (setq company-idle-delay 0.0
       company-minimum-prefix-length 1)
 (use-package lsp-mode
@@ -243,7 +262,7 @@
 ;; LSP-LANGUAGES
 ;; python
 (use-package lsp-pyright
-  :ensure t
+  :defer 5
   :hook (python-mode . (lambda ()
 			 (require 'lsp-pyright)
 			 (lsp-deferred))))  ; or lsp-deferred
@@ -274,13 +293,16 @@
 
 ;; YASNIPPET
 (use-package yasnippet
+  :defer 5
   :config (yas-global-mode 1))
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :defer 10)
 
 
 ;; EWW
 ;; follow gopher and gemini links from EWW
-(use-package elpher)
+(use-package elpher
+  :defer 20)
 (advice-add 'eww-browse-url :around 'elpher:eww-browse-url)
 (defun elpher:eww-browse-url (original url &optional new-window)
   "Handle gemini links."
@@ -355,11 +377,13 @@
 
 
 ;; distraction-free writing
-(use-package olivetti)
+(use-package olivetti
+  :commands olivetti-mode)
 
 
 ;; better PDF viewer
 (use-package pdf-tools
+  :defer 10
   :config
   (pdf-tools-install))
 
