@@ -434,3 +434,6 @@
   (dashboard-setup-startup-hook)
   (dashboard-modify-heading-icons '((recents . "file-text")
 				    (bookmarks . "book"))))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(load "worktracker")
