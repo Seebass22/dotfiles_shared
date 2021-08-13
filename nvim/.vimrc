@@ -137,8 +137,8 @@ set wildmenu
 
 "Indentation settings for using hard tabs for indent.
 "Display tabs as four characters wide
-set shiftwidth=4
-set tabstop=4
+" set shiftwidth=4
+" set tabstop=4
 
 " toggles between paste and nopaste
 "set pastetoggle=<F2>
