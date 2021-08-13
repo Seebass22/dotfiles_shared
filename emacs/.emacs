@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -67,6 +67,12 @@
   :config
   (evil-set-undo-system 'undo-tree)
   (global-undo-tree-mode 1))
+(use-package evil-numbers)
+;; Vim increment/decrement keys.
+(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+(define-key evil-visual-state-map (kbd "g C-a") 'evil-numbers/inc-at-pt-incremental)
+(define-key evil-visual-state-map (kbd "g C-x") 'evil-numbers/dec-at-pt-incremental)
 
 
 ;; IVY
@@ -91,7 +97,7 @@
 (use-package all-the-icons) ; run M-x all-the-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-one t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
@@ -154,6 +160,17 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; scroll N lines to screen edge
+(setq scroll-margin 2)
+;; don't recenter after scrolling
+(setq scroll-conservatively scroll-margin)
+
+;; enable features disabled by default
+(put 'narrow-to-region 'disabled nil)
+
+;; show matching parentheses
+(show-paren-mode 1)
+
 
 ;; ORG-MODE
 (setq org-log-into-drawer t)
@@ -161,6 +178,7 @@
 (setq org-agenda-files
       '("~/Documents/org-mode/orgnotes/tasklist.org"
 	"~/Documents/org-mode/orgnotes/exams.org"
+	"~/Documents/org-mode/orgnotes/meetups.org"
 	"~/Documents/org-mode/orgnotes/birthdays.org"))
 ;; allow running elisp and python code blocks
 (with-eval-after-load 'org
@@ -357,6 +375,7 @@
   "rl" 'bookmark-bmenu-list
   "rj" 'bookmark-jump
   "rm" 'bookmark-set
+  "rd" 'bookmark-delete
   ;; git
   "g"   '(:ignore t :which-key "git")
   "gs"  'magit-status
@@ -401,10 +420,6 @@
 (let ((email-file  "~/.emacs.d/emacs_email.el"))
   (when (file-exists-p email-file)
     (load-file email-file)))
-
-
-;; enable features disabled by default
-(put 'narrow-to-region 'disabled nil)
 
 
 ;; workspace management
