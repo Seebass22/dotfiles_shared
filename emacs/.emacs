@@ -452,3 +452,10 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (load "worktracker")
+(setq worktracker-activities '((el . "emacs")
+                               (rs . "rust")
+                               (py . "python")
+                               (org . "kernel dev")
+                               (c . "kernel dev")
+                               (sh . "linux")
+                               (gd . "godot")))
