@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(swift-mode ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -74,7 +74,6 @@
 (define-key evil-visual-state-map (kbd "g C-a") 'evil-numbers/inc-at-pt-incremental)
 (define-key evil-visual-state-map (kbd "g C-x") 'evil-numbers/dec-at-pt-incremental)
 
-
 ;; IVY
 (use-package ivy
   :diminish ivy-mode
@@ -133,6 +132,7 @@
   ("C-c p" . projectile-command-map)
   :init
   (setq projectile-switch-project-action #'projectile-dired))
+(use-package ripgrep)
 
 (use-package magit
   :commands magit-status)
@@ -194,8 +194,10 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("p" . "src perl"))
   (add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
   (add-to-list 'org-structure-template-alist '("o" . "src octave"))
+  (add-to-list 'org-structure-template-alist '("sw" . "src swift"))
   (add-to-list 'org-structure-template-alist '("r" . "src rust")))
 ;; syntax highlighting for LaTeX export
 (setq org-latex-listings 'minted
@@ -459,3 +461,5 @@
                                (c . "kernel dev")
                                (sh . "linux")
                                (gd . "godot")))
+
+(use-package swift-mode)
