@@ -34,7 +34,7 @@ Plugin 'machakann/vim-sandwich'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
 "snippet functionality
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 "call tmux/nvim terminal for make
 Plugin 'tpope/vim-dispatch'

@@ -8,7 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(swift-mode ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(lsp-sourcekit swift-mode ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -194,6 +194,7 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("R" . "src R"))
   (add-to-list 'org-structure-template-alist '("p" . "src perl"))
   (add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
   (add-to-list 'org-structure-template-alist '("o" . "src octave"))
@@ -460,6 +461,18 @@
                                (org . "kernel dev")
                                (c . "kernel dev")
                                (sh . "linux")
+                               (swift . "swift")
                                (gd . "godot")))
 
 (use-package swift-mode)
+(use-package lsp-sourcekit
+  :after lsp-mode)
+
+;;; cperl-mode is preferred to perl-mode                                        
+(defalias 'perl-mode 'cperl-mode)
+
+(setq cperl-indent-level 4
+      cperl-close-paren-offset -4
+      cperl-continued-statement-offset 2
+      cperl-indent-subs-specially nil
+      cperl-indent-parens-as-block t)
