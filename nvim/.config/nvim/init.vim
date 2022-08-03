@@ -221,3 +221,9 @@ let g:vimtex_compiler_progname="nvr"
 " enable folding
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
+
+" suppress overfull/underfull warnings in quickfix list
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull',
+      \ 'Overfull',
+      \]
