@@ -7,6 +7,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   '("/home/seb22/Documents/notes/orgnotes/tasklist.org" "/home/seb22/Documents/notes/orgnotes/meetups.org" "/home/seb22/Documents/notes/orgnotes/birthdays.org"))
  '(package-selected-packages
    '(lsp-sourcekit swift-mode ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
 (custom-set-faces
@@ -174,10 +176,10 @@
 (setq org-log-into-drawer t)
 (setq org-catch-invisible-edits 'error)
 (setq org-agenda-files
-      '("~/Documents/org-mode/orgnotes/tasklist.org"
-	"~/Documents/org-mode/orgnotes/exams.org"
-	"~/Documents/org-mode/orgnotes/meetups.org"
-	"~/Documents/org-mode/orgnotes/birthdays.org"))
+      '("~/Documents/notes/orgnotes/tasklist.org"
+	"~/Documents/notes/orgnotes/exams.org"
+	"~/Documents/notes/orgnotes/meetups.org"
+	"~/Documents/notes/orgnotes/birthdays.org"))
 ;; allow running elisp and python code blocks
 (with-eval-after-load 'org
   (org-babel-do-load-languages
