@@ -233,14 +233,6 @@
   (add-to-list 'erc-modules 'hl-nicks))
 
 
-;; AUCTeX
-(use-package latex
-  :ensure auctex)
-(use-package auctex-latexmk
-  :after latex
-  :config
-  (auctex-latexmk-setup))
-
 (use-package flycheck
   :defer t)
 
