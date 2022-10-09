@@ -32,6 +32,8 @@
 
 (use-package diminish)
 
+(use-package undo-fu)
+
 ;; EVIL
 (use-package evil
   :init
@@ -39,7 +41,9 @@
   (setq evil-want-integration t)
   (setq evil-want-C-u-scroll t)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  :init
+  (setq evil-undo-system 'undo-fu))
 (use-package evil-collection
   :after evil
   :custom
@@ -61,12 +65,6 @@
   :config
   (global-evil-matchit-mode 1))
 (evil-select-search-module 'evil-search-module 'evil-search)
-(use-package undo-tree
-  :after evil
-  :diminish
-  :config
-  (evil-set-undo-system 'undo-tree)
-  (global-undo-tree-mode 1))
 (use-package evil-numbers)
 ;; Vim increment/decrement keys.
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
