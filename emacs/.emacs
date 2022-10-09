@@ -249,7 +249,9 @@
   :defer t)
 ;; rust
 (use-package rustic
-  :defer 5)
+  :defer 5
+  :config
+  (setq rustic-analyzer-command '("~/.local/bin/rust-analyzer")))
 (use-package csharp-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
