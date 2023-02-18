@@ -470,3 +470,8 @@
       cperl-continued-statement-offset 2
       cperl-indent-subs-specially nil
       cperl-indent-parens-as-block t)
+
+;;; GLSL
+(use-package glsl-mode)
+(evil-define-key 'normal glsl-mode-map
+  "K" 'glsl-find-man-page)
