@@ -19,4 +19,9 @@ return require('packer').startup(function(use)
 
 	-- wal colorscheme
 	use 'dylanaraps/wal.vim'
+
+	use 'habamax/vim-godot'
+
+	-- Configurations for Nvim LSP
+	use 'neovim/nvim-lspconfig'
 end)
