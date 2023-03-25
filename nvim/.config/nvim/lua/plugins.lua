@@ -12,7 +12,11 @@ return require('packer').startup(function(use)
     -- nvim terminal support for dispatch (:Make)
     use 'radenling/vim-dispatch-neovim'
 
+    -- comments
     use 'tpope/vim-commentary'
+
+    -- LaTeX
+    use 'lervag/vimtex'
 
     -- magit clone
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }

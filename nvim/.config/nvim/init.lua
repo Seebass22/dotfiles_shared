@@ -55,7 +55,6 @@ vim.cmd('nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>')
 -- autocmd FileType vhdl setlocal commentstring=--\ %s
 -- autocmd FileType matlab setlocal commentstring=\%\ %s"
 
--- let g:tex_flavor='latex'
 
 -- TODO
 -- " better diffs
@@ -83,23 +82,27 @@ vim.cmd('nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>')
 -- autocmd filetype tex let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 -- " ***VIMTEX***
--- " use zathura as PDF viewer for vimtex
--- let g:vimtex_view_method='zathura'
+vim.cmd([[
+let g:tex_flavor='latex'
 
--- " let g:vimtex_complete_enabled=0
+" use zathura as PDF viewer for vimtex
+let g:vimtex_view_method='zathura'
 
--- " used for callback
--- let g:vimtex_compiler_progname="nvr"
+" let g:vimtex_complete_enabled=0
 
--- " enable folding
--- let g:vimtex_fold_enabled=1
--- let g:vimtex_fold_manual=1
+" used for callback
+let g:vimtex_compiler_progname="nvr"
 
--- " suppress overfull/underfull warnings in quickfix list
--- let g:vimtex_quickfix_ignore_filters = [
---       \ 'Underfull',
---       \ 'Overfull',
---       \]
+" enable folding
+let g:vimtex_fold_enabled=1
+let g:vimtex_fold_manual=1
+
+" suppress overfull/underfull warnings in quickfix list
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull',
+      \ 'Overfull',
+      \]
+]])
 
 local neogit = require("neogit")
 
