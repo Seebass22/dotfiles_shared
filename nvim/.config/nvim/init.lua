@@ -13,7 +13,6 @@ filetype indent on
 filetype plugin on
 ]])
 
--- TODO uncomment with plugins
 vim.cmd("colorscheme wal")
 
 -- search as characters are entered
@@ -36,10 +35,7 @@ vim.opt.expandtab = true
 -- " toggles between paste and nopaste
 vim.opt.pastetoggle = "<F2>"
 
--- TODO plugins
--- let g:airline#extensions#tabline#enabled = 1
--- "let g:airline_left_sep='>'
--- "let g:airline_right_sep='<'
+vim.cmd('let g:airline#extensions#tabline#enabled = 1')
 
 vim.opt.inccommand = "nosplit"
 -- invisible characters
@@ -77,7 +73,6 @@ vim.cmd('nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>')
 
 -- " ***GODOT***
 -- nnoremap <F6> :GodotRun<cr>
-
 
 -- " ***ULTISNIPS***
 -- " change ultisnips binds
