@@ -221,7 +221,12 @@ cmp.setup {
         end, { 'i', 's' }),
     }),
     sources = {
+        -- order is priority
+        { name = 'nvim_lua' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'path' },
+        -- only show suggestions after 5 chars
+        { name = 'buffer', keyword_length = 5 },
     },
 }

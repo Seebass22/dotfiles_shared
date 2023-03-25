@@ -33,4 +33,8 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
+    use 'hrsh7th/cmp-buffer' -- complete words from current buffer
+    use 'hrsh7th/cmp-path' -- complete file paths
+    use 'hrsh7th/cmp-nvim-lua' -- complete nvim api functions
 end)
