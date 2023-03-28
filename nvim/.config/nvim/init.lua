@@ -35,11 +35,12 @@ vim.opt.expandtab = true
 -- " toggles between paste and nopaste
 vim.opt.pastetoggle = "<F2>"
 
-vim.cmd('let g:airline#extensions#tabline#enabled = 1')
+vim.g['airline#extensions#tabline#enabled'] = true
 
 vim.opt.inccommand = "nosplit"
 -- invisible characters
-vim.opt.listchars = "tab:▸\\ ,eol:¬"
+-- vim.opt.listchars = { tab = '▸', eol = '¬' }
+-- vim.opt.listchars = { space = '_', tab = '>~' }
 
 vim.cmd("nnoremap <bs> <c-^>")
 
@@ -55,31 +56,8 @@ vim.cmd('nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>')
 -- autocmd FileType vhdl setlocal commentstring=--\ %s
 -- autocmd FileType matlab setlocal commentstring=\%\ %s"
 
-
--- TODO
--- " better diffs
--- set diffopt+=algorithm:patience
--- set diffopt+=indent-heuristic
-
--- TODO
--- " ***FZF***
--- nmap <leader>f :Files<cr>|             " fuzzy find files in the working directory
--- nmap <leader>g :GFiles<cr>|            " fuzzy find git files in the working directory
--- nmap <leader>b :Buffers<cr>|           " fuzzy find an open buffer
--- nmap <leader>t :BTags<cr>|             " fuzzy find tags in current buffer
--- nmap <leader>T :Tags<cr>|              " fuzzy find tags across project
--- vnoremap <c-p> "ry:<c-u>Rg <c-r>r<cr>| " Rg search visual selection
-
 -- " ***GODOT***
 -- nnoremap <F6> :GodotRun<cr>
-
--- " ***ULTISNIPS***
--- " change ultisnips binds
--- "TODO (changed for CoC)
--- " autocmd filetype tex CocDisable
--- autocmd filetype tex let g:UltiSnipsExpandTrigger="<tab>"
--- autocmd filetype tex let g:UltiSnipsJumpForwardTrigger="<tab>"
--- autocmd filetype tex let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 -- " ***VIMTEX***
 vim.cmd([[
@@ -181,7 +159,6 @@ for _, lsp in ipairs(servers) do
     }
 end
 
--- luasnip setup
 local luasnip = require 'luasnip'
 
 -- nvim-cmp setup
@@ -231,6 +208,7 @@ cmp.setup {
     },
 }
 
+-- luasnip setup
 local ls = require 'luasnip'
 ls.config.set_config {
     -- remember last snippet
