@@ -1,0 +1,44 @@
+#usepackage
+snippet up
+    \\usepackage[$2]{${1:package}}${0}
+
+#\begin{}...\end{}
+snippet beg
+    \\begin{${1:env}}
+    ${0:${VISUAL}}
+    \\end{$1}
+
+snippet sec
+    \\section{${1:heading}}${0}
+
+snippet sub
+    \\subsection{${1:heading}}${0}
+
+snippet subsub
+    \\subsubsection{${1:heading}}${0}
+
+snippet toc
+    \\tableofcontents
+
+snippet img
+    \\includegraphics[${2}]{${1}}
+
+snippet cap
+    \\caption{${1}}
+
+snippet it
+    \\item{$1}
+
+snippet code
+    \\begin{figure}
+    \\begin{lstlisting}
+    $1
+    \\end{lstlisting}
+    \\caption{$2}
+    \\end{figure}
+
+snippet fig
+    \\begin{figure}
+    $1
+    \\caption{$2}
+    \\end{figure}

@@ -230,3 +230,15 @@ cmp.setup {
         { name = 'buffer', keyword_length = 5 },
     },
 }
+
+local ls = require 'luasnip'
+ls.config.set_config {
+    -- remember last snippet
+    -- allow jumping back to it
+    history = true,
+
+    -- enable dynamic snippets
+    updateevents = "TextChanged,TextChangedI",
+}
+
+require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets/"})
