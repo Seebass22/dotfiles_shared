@@ -37,4 +37,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-buffer' -- complete words from current buffer
     use 'hrsh7th/cmp-path' -- complete file paths
     use 'hrsh7th/cmp-nvim-lua' -- complete nvim api functions
+
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
 end)
