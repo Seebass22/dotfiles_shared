@@ -1,5 +1,0 @@
---add-metadata
---external-downloader aria2c
---ignore-errors
-# --external-downloader-args '-j 5 -x 2'
--o "%(title)s.%(ext)s"
