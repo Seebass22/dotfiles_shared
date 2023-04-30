@@ -227,3 +227,22 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- vim-godot
+vim.cmd([[
+let g:godot_executable = '/home/seb22/.local/bin/godot-4.0.2'
+
+func! GodotSettings() abort
+    setlocal foldmethod=expr
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    nnoremap <buffer> <F4> :GodotRunLast<CR>
+    nnoremap <buffer> <F5> :GodotRun<CR>
+    nnoremap <buffer> <F6> :GodotRunCurrent<CR>
+    nnoremap <buffer> <F7> :GodotRunFZF<CR>
+endfunc
+
+augroup godot | au!
+    au FileType gdscript call GodotSettings()
+augroup end
+]])
