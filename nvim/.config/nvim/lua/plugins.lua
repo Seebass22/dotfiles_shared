@@ -42,4 +42,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
+
+	-- for sardine https://sardine.raphaelforment.fr/editors/vim.html
+	use 'jpalardy/vim-slime'
 end)
