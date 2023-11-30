@@ -10,7 +10,8 @@
  '(org-agenda-files
    '("/home/seb22/Documents/notes/orgnotes/tasklist.org" "/home/seb22/Documents/notes/orgnotes/meetups.org" "/home/seb22/Documents/notes/orgnotes/birthdays.org"))
  '(package-selected-packages
-   '(lsp-sourcekit swift-mode ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil)))
+   '(fzf ron-mode rom-mode glsl-mode lua-mode lsp-sourcekit ripgrep evil-numbers exec-path-from-shell dashboard rustic csharp-mode tree-sitter-langs tree-sitter pdf-tools olivetti ess vterm gdscript-mode yasnippet-snippets general yasnippet edit-indirect elpher flycheck lsp-ui company lsp-pyright lsp-mode auctex-latexmk auctex erc-hl-nicks erc-highlight-nicknames dired-single evil-org helpful ivy-rich counsel org-bullets doom-themes diminish magit projectile which-key doom-modeline ivy evil-collection evil-commentary evil))
+ '(warning-suppress-types '((perspective))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -199,6 +200,7 @@
   (add-to-list 'org-structure-template-alist '("vh" . "src vhdl"))
   (add-to-list 'org-structure-template-alist '("o" . "src octave"))
   (add-to-list 'org-structure-template-alist '("sw" . "src swift"))
+  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
   (add-to-list 'org-structure-template-alist '("r" . "src rust")))
 ;; syntax highlighting for LaTeX export
 (setq org-latex-listings 'minted
@@ -247,6 +249,7 @@
   :config
   (setq rustic-analyzer-command '("~/.local/bin/rust-analyzer")))
 (use-package csharp-mode
+  :ensure nil
   :config
   (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
 
@@ -458,10 +461,6 @@
                                (swift . "swift")
                                (gd . "godot")))
 
-(use-package swift-mode)
-(use-package lsp-sourcekit
-  :after lsp-mode)
-
 ;;; cperl-mode is preferred to perl-mode                                        
 (defalias 'perl-mode 'cperl-mode)
 
@@ -471,7 +470,28 @@
       cperl-indent-subs-specially nil
       cperl-indent-parens-as-block t)
 
+;;; lua
+(use-package lua-mode)
+
 ;;; GLSL
 (use-package glsl-mode)
 (evil-define-key 'normal glsl-mode-map
   "K" 'glsl-find-man-page)
+
+(use-package ron-mode)
+(use-package fzf
+  ;; :bind
+  ;; Don't forget to set keybinds!
+  :config
+  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+        fzf/executable "fzf"
+        fzf/git-grep-args "-i --line-number %s"
+        ;; command used for `fzf-grep-*` functions
+        ;; example usage for ripgrep:
+        ;; fzf/grep-command "rg --no-heading -nH"
+        ;; fzf/grep-command "rg --no-heading --line-number --with-filename --smart-case --color-always"
+        fzf/grep-command "rg --no-heading --line-number --with-filename --smart-case"
+        ;; fzf/grep-command "grep -nrH"
+        ;; If nil, the fzf buffer will appear at the top of the window
+        fzf/position-bottom t
+        fzf/window-height 15))
