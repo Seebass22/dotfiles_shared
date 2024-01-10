@@ -35,10 +35,38 @@ snippet code
     $1
     \\end{lstlisting}
     \\caption{$2}
+    \\label{$3}
     \\end{figure}
 
 snippet fig
     \\begin{figure}
     $1
     \\caption{$2}
+    \\label{$2}
     \\end{figure}
+
+snippet preamble
+    \\documentclass[a4paper]{article}
+    \\usepackage{graphicx}
+    \\usepackage[utf8]{inputenc}
+    \\usepackage[T1]{fontenc}
+    \\usepackage[ngerman]{babel}
+    \\usepackage{amsmath}
+
+    \\title{$1}
+    \\author{Sebastian Thümmel}
+
+    \\begin{document}
+    \\maketitle
+    
+    $2
+    \\end{document}
+
+snippet verb
+    \\verb|$1| $2
+
+snippet list
+    \\begin{itemize}
+    \\item{$1}
+    $2
+    \\end{itemize}
