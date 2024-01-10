@@ -482,6 +482,14 @@
 (use-package glsl-mode)
 (evil-define-key 'normal glsl-mode-map
   "K" 'glsl-find-man-page)
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+               '(glsl-mode . "glsl"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("glslls" "--stdin"))
+                    :activation-fn (lsp-activate-on "glsl")
+                    :server-id 'glslls)))
+
 
 (use-package ron-mode)
 (use-package fzf
