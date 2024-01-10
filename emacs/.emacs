@@ -470,6 +470,11 @@
       cperl-indent-subs-specially nil
       cperl-indent-parens-as-block t)
 
+;; fix splits on desktop
+(let ((fix-split-file  "~/.emacs.d/fix_desktop_splits.el"))
+  (when (file-exists-p fix-split-file)
+    (load-file fix-split-file)))
+
 ;;; lua
 (use-package lua-mode)
 
