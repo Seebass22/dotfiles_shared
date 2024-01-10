@@ -43,6 +43,11 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-	-- for sardine https://sardine.raphaelforment.fr/editors/vim.html
-	use 'jpalardy/vim-slime'
+    -- for sardine https://sardine.raphaelforment.fr/editors/vim.html
+    use 'jpalardy/vim-slime'
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 end)
