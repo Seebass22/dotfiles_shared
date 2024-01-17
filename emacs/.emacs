@@ -411,8 +411,11 @@
 
 ;; workspace management
 (use-package perspective
+  :custom
+  (persp-suppress-no-prefix-key-warning t)
   :config
   (persp-mode))
+
 (add-hook 'ibuffer-hook
 	  (lambda ()
 	    (persp-ibuffer-set-filter-groups)
