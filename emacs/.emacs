@@ -239,7 +239,10 @@
   (setq lsp-enable-symbol-highlighting nil)
   ;; disable minibuffer doc
   (setq lsp-eldoc-hook nil)
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
   (setq rustic-analyzer-command '("~/.local/bin/rust-analyzer")))
+
 (use-package csharp-mode
   :ensure nil
   :config
@@ -270,12 +273,8 @@
   ;; enable / disable the hints as you prefer:
   (lsp-inlay-hint-enable nil)
   ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
-  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
   (lsp-rust-analyzer-display-chaining-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
-  (lsp-rust-analyzer-display-closure-return-type-hints t)
   (lsp-rust-analyzer-display-parameter-hints t)
-  (lsp-rust-analyzer-display-reborrow-hints nil)
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
@@ -287,8 +286,8 @@
   :ensure
   :commands lsp-ui-mode
   :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
+  ;; (lsp-ui-peek-always-show t)
+  ;; (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable t)) ;; maybe change this
 
 (setq lsp-enable-indentation nil)
@@ -370,6 +369,7 @@
   "l"   '(:ignore t :which-key "LSP mode stuff")
   "lh" 'lsp-inlay-hints-mode
   "lu" 'lsp-ui-mode
+  "ld" 'lsp-rust-analyzer-open-external-docs
   ;; buffer management
   "b" '(:ignore t :which-key "buffer stuff")
   "bb" 'persp-switch-to-buffer
