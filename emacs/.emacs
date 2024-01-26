@@ -81,7 +81,7 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
-(use-package all-the-icons) ; run M-x all-the-icons-install-fonts
+;; run nerd-icons-install-fonts
 (use-package doom-themes
   :config
   (load-theme 'doom-one t)
