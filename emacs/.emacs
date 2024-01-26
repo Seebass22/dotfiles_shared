@@ -84,7 +84,12 @@
 ;; run nerd-icons-install-fonts
 (use-package doom-themes
   :config
-  (load-theme 'doom-one t)
+  ;; (load-theme 'doom-one t)
+  ;; (load-theme 'doom-challenger-deep t)
+  (load-theme 'doom-horizon t)
+  ;; (load-theme 'doom-outrun-electric t)
+  ;; (load-theme 'doom-gruvbox t)
+
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 (use-package org-bullets
