@@ -271,8 +271,7 @@
   (setq lsp-eldoc-hook nil)
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t)
-  :custom
-  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
+  (setq rustic-analyzer-command '("~/.local/bin/rust-analyzer")))
 
 (use-package csharp-mode
   :ensure nil
